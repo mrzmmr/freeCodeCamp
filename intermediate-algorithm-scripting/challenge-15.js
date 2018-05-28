@@ -12,53 +12,53 @@
 const tap = require('tap')
 
 const gcd = (x, y) => {
-	let r
+    let r
 
-	// Sort x and y so x < y
-	if (x > y) {
-		r = x
-		x = y
-		y = r
-	}
+    // Sort x and y so x < y
+    if (x > y) {
+        r = x
+        x = y
+        y = r
+    }
 
-	while (r !== 0) {
-		// Store the remainder 4 l8er
-		r = y % x
+    while (r !== 0) {
+        // Store the remainder 4 l8er
+        r = y % x
 
-		if (r === 0) {
-			return x
-		}
+        if (r === 0) {
+            return x
+        }
 
-		// Keep x < r < y
-		y = x
-		x = r
-	}
+        // Keep x < r < y
+        y = x
+        x = r
+    }
 }
 
 const smallestCommons = arr => {
-	let [r] = arr
-	const a = []
-	let i = 0
+    let [r] = arr
+    const a = []
+    let i = 0
 
-	arr = arr.sort((x, y) => x > y)
+    arr = arr.sort((x, y) => x > y)
 
-	for (i = arr[0] - 1; i <= arr[1]; i++) {
-		a.push(i)
-	}
+    for (i = arr[0] - 1; i <= arr[1]; i++) {
+        a.push(i)
+    }
 
-	i = 0
+    i = 0
 
-	while (++i < a.length) {
-		r = r * a[i] / gcd(r, a[i])
-	}
+    while (++i < a.length) {
+        r = (r * a[i]) / gcd(r, a[i])
+    }
 
-	return r
+    return r
 }
 
 tap.test('Smallest Common Multiple', t => {
-	t.is(smallestCommons([1, 5]), 60)
-	t.is(smallestCommons([5, 1]), 60)
-	t.is(smallestCommons([1, 13]), 360360)
-	t.is(smallestCommons([23, 18]), 6056820)
-	t.end()
+    t.is(smallestCommons([1, 5]), 60)
+    t.is(smallestCommons([5, 1]), 60)
+    t.is(smallestCommons([1, 13]), 360360)
+    t.is(smallestCommons([23, 18]), 6056820)
+    t.end()
 })

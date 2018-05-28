@@ -14,30 +14,30 @@
 const tap = require('tap')
 
 function addTogether(x, y) {
-	const a = typeof x === 'number' ? x : null
-	const b = typeof y === 'number' ? y : null
+    const a = typeof x === 'number' ? x : null
+    const b = typeof y === 'number' ? y : null
 
-	if (a && b) {
-		return a + b
-	}
+    if (a && b) {
+        return a + b
+    }
 
-	if (!a && !b) {
-		return undefined
-	}
+    if (!a && !b) {
+        return undefined
+    }
 
-	if (a) {
-		return function(c) {
-			return a + c
-		}
-	}
-	return function(c) {
-		return b + c
-	}
+    if (a) {
+        return function(c) {
+            return a + c
+        }
+    }
+    return function(c) {
+        return b + c
+    }
 }
 
 tap.test('Arguments Optional', t => {
-	t.is(addTogether(2, 3), 5)
-	t.is(addTogether(2)(3), 5)
-	t.is(addTogether('http://bit.ly/IqT6zt'))
-	t.end()
+    t.is(addTogether(2, 3), 5)
+    t.is(addTogether(2)(3), 5)
+    t.is(addTogether('http://bit.ly/IqT6zt'))
+    t.end()
 })

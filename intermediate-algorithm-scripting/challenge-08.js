@@ -8,23 +8,23 @@
 const tap = require('tap')
 
 function fearNotLetter(str) {
-	const start = str.charCodeAt(0)
-	let missing
+    const start = str.charCodeAt(0)
+    let missing
 
-	for (let i = 1; i < str.length; i++) {
-		if (str[i].charCodeAt(0) !== start + i) {
-			missing = String.fromCharCode(start + i)
-			break
-		}
-	}
+    for (let i = 1; i < str.length; i++) {
+        if (str[i].charCodeAt(0) !== start + i) {
+            missing = String.fromCharCode(start + i)
+            break
+        }
+    }
 
-	return missing
+    return missing
 }
 
 tap.test('Missing letters', t => {
-	t.is(fearNotLetter('abce'), 'd')
-	t.is(fearNotLetter('abcdefghjklmno'), 'i')
-	t.is(fearNotLetter('bcd'), undefined)
-	t.is(fearNotLetter('yz'), undefined)
-	t.end()
+    t.is(fearNotLetter('abce'), 'd')
+    t.is(fearNotLetter('abcdefghjklmno'), 'i')
+    t.is(fearNotLetter('bcd'), undefined)
+    t.is(fearNotLetter('yz'), undefined)
+    t.end()
 })

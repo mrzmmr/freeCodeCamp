@@ -13,57 +13,57 @@
 const tap = require('tap')
 
 function translatePigLatin(str) {
-	let found = []
-	const consonants = [
-		'b',
-		'c',
-		'd',
-		'f',
-		'g',
-		'h',
-		'j',
-		'k',
-		'l',
-		'm',
-		'n',
-		'p',
-		'q',
-		'r',
-		's',
-		't',
-		'v',
-		'x',
-		'z',
-		'w',
-		'y'
-	]
+    let found = []
+    const consonants = [
+        'b',
+        'c',
+        'd',
+        'f',
+        'g',
+        'h',
+        'j',
+        'k',
+        'l',
+        'm',
+        'n',
+        'p',
+        'q',
+        'r',
+        's',
+        't',
+        'v',
+        'x',
+        'z',
+        'w',
+        'y'
+    ]
 
-	for (let i = 0; i < str.length; i++) {
-		if (consonants.indexOf(str[i]) > -1) {
-			found.push(str[i])
-		} else {
-			break
-		}
-	}
+    for (let i = 0; i < str.length; i++) {
+        if (consonants.indexOf(str[i]) > -1) {
+            found.push(str[i])
+        } else {
+            break
+        }
+    }
 
-	found = found.join('')
+    found = found.join('')
 
-	if (found.length === 0) {
-		str += 'way'
-		return str
-	}
+    if (found.length === 0) {
+        str += 'way'
+        return str
+    }
 
-	str = str.slice(found.length)
-	str += found + 'ay'
+    str = str.slice(found.length)
+    str += found + 'ay'
 
-	return str
+    return str
 }
 
 tap.test('Pig Latin', t => {
-	t.is(translatePigLatin('california'), 'aliforniacay')
-	t.is(translatePigLatin('paragraphs'), 'aragraphspay')
-	t.is(translatePigLatin('glove'), 'oveglay')
-	t.is(translatePigLatin('algorithm'), 'algorithmway')
-	t.is(translatePigLatin('eight'), 'eightway')
-	t.end()
+    t.is(translatePigLatin('california'), 'aliforniacay')
+    t.is(translatePigLatin('paragraphs'), 'aragraphspay')
+    t.is(translatePigLatin('glove'), 'oveglay')
+    t.is(translatePigLatin('algorithm'), 'algorithmway')
+    t.is(translatePigLatin('eight'), 'eightway')
+    t.end()
 })

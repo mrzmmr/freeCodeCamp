@@ -2,7 +2,9 @@
     "name": "freeCodeCamp",
     "description": "My solutions for the challenges and projects on freecodecamp.com",
     "scripts": {
-        "pretest": "xo --fix --space --no-semicolon --prettier ./**/*.js",
+	"xo": "npx xo --fix --space --no-semicolon --prettier ./**/*.js",
+	"prettier": "npx prettier --write --no-semi --tab-width 4 --single-quote ./**/*.js",
+        "pretest": "npm run xo && npm run prettier",
         "test": "tap ./**/*.js"
     },
     "author": "Paul Zimmer",

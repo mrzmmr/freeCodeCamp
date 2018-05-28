@@ -25,99 +25,99 @@
 const tap = require('tap')
 
 const collection = {
-	'2548': {
-		album: 'Slippery When Wet',
-		artist: 'Bon Jovi',
-		tracks: ['Let It Rock', 'You Give Love a Bad Name']
-	},
-	'2468': {
-		album: '1999',
-		artist: 'Prince',
-		tracks: ['1999', 'Little Red Corvette']
-	},
-	'1245': {
-		artist: 'Robert Palmer',
-		tracks: []
-	},
-	'5439': {
-		album: 'ABBA Gold'
-	}
+    2548: {
+        album: 'Slippery When Wet',
+        artist: 'Bon Jovi',
+        tracks: ['Let It Rock', 'You Give Love a Bad Name']
+    },
+    2468: {
+        album: '1999',
+        artist: 'Prince',
+        tracks: ['1999', 'Little Red Corvette']
+    },
+    1245: {
+        artist: 'Robert Palmer',
+        tracks: []
+    },
+    5439: {
+        album: 'ABBA Gold'
+    }
 }
 
 function updateRecords(id, prop, value) {
-	const copy = JSON.parse(JSON.stringify(collection))
+    const copy = JSON.parse(JSON.stringify(collection))
 
-	if (value.length > 0) {
-		if (prop === 'tracks') {
-			if (Array.isArray(copy[id][prop])) {
-				copy[id][prop].push(value)
-			} else {
-				copy[id][prop] = [value]
-			}
-		} else {
-			copy[id][prop] = value
-		}
-	} else if (prop === 'tracks') {
-		copy[id][prop] = []
-	} else {
-		delete copy[id][prop]
-	}
+    if (value.length > 0) {
+        if (prop === 'tracks') {
+            if (Array.isArray(copy[id][prop])) {
+                copy[id][prop].push(value)
+            } else {
+                copy[id][prop] = [value]
+            }
+        } else {
+            copy[id][prop] = value
+        }
+    } else if (prop === 'tracks') {
+        copy[id][prop] = []
+    } else {
+        delete copy[id][prop]
+    }
 
-	return copy
+    return copy
 }
 
 const tests = [
-	{
-		name: 'artist should be "ABBA"',
-		params: [5439, 'artist', 'ABBA'],
-		test: (t, actual) => {
-			t.ok(actual[5439].artist === 'ABBA')
-		}
-	},
-	{
-		name: 'tracks should have "Take a Chance on Me" as the last element',
-		params: [5439, 'tracks', 'Take a Chance on Me'],
-		test: (t, actual) => {
-			const {tracks} = actual[5439]
-			t.ok(tracks.indexOf('Take a Chance on Me') === tracks.length - 1)
-		}
-	},
-	{
-		name: 'artist should not be set',
-		params: [2548, 'artist', ''],
-		test: (t, actual) => {
-			t.ok(Object.keys(actual).indexOf('artist') < 0)
-		}
-	},
-	{
-		name: 'tracks should have "Addicted to Love" as the last element',
-		params: [1245, 'tracks', 'Addicted to Love'],
-		test: (t, actual) => {
-			const {tracks} = actual[1245]
-			t.ok(tracks.indexOf('Addicted to Love') === tracks.length - 1)
-		}
-	},
-	{
-		name: 'tracks should have "1999" as the first element',
-		params: [2468, 'tracks', 'Free'],
-		test: (t, actual) => {
-			const {tracks} = actual[2468]
-			t.ok(tracks.indexOf('1999') === 0)
-		}
-	},
-	{
-		name: 'tracks should not be set',
-		params: [2548, 'tracks', ''],
-		test: (t, actual) => {
-			t.ok(Object.keys(actual).indexOf('tracks') < 0)
-		}
-	}
+    {
+        name: 'artist should be "ABBA"',
+        params: [5439, 'artist', 'ABBA'],
+        test: (t, actual) => {
+            t.ok(actual[5439].artist === 'ABBA')
+        }
+    },
+    {
+        name: 'tracks should have "Take a Chance on Me" as the last element',
+        params: [5439, 'tracks', 'Take a Chance on Me'],
+        test: (t, actual) => {
+            const { tracks } = actual[5439]
+            t.ok(tracks.indexOf('Take a Chance on Me') === tracks.length - 1)
+        }
+    },
+    {
+        name: 'artist should not be set',
+        params: [2548, 'artist', ''],
+        test: (t, actual) => {
+            t.ok(Object.keys(actual).indexOf('artist') < 0)
+        }
+    },
+    {
+        name: 'tracks should have "Addicted to Love" as the last element',
+        params: [1245, 'tracks', 'Addicted to Love'],
+        test: (t, actual) => {
+            const { tracks } = actual[1245]
+            t.ok(tracks.indexOf('Addicted to Love') === tracks.length - 1)
+        }
+    },
+    {
+        name: 'tracks should have "1999" as the first element',
+        params: [2468, 'tracks', 'Free'],
+        test: (t, actual) => {
+            const { tracks } = actual[2468]
+            t.ok(tracks.indexOf('1999') === 0)
+        }
+    },
+    {
+        name: 'tracks should not be set',
+        params: [2548, 'tracks', ''],
+        test: (t, actual) => {
+            t.ok(Object.keys(actual).indexOf('tracks') < 0)
+        }
+    }
 ]
 
 tests.forEach(test => {
-	tap.test(test.name, t => {
-		const actual = updateRecords(...test.params)
-		test.test(t, actual)
-		t.end()
-	})
+    tap.test(test.name, t => {
+        const actual = updateRecords(...test.params)
+        test.test(t, actual)
+        t.end()
+    })
 })
