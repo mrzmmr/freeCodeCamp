@@ -9,7 +9,8 @@
     "xo": {
         "space": 4,
         "semicolon": false,
-        "prettier": true
+        "prettier": true,
+        "bracketSpacing": true
     },
     "author": "Paul Zimmer",
     "license": "MIT",
