@@ -2,15 +2,19 @@
     "name": "freeCodeCamp",
     "description": "My solutions for the challenges and projects on freecodecamp.com",
     "scripts": {
-	"xo": "npx xo --fix --space --no-semicolon --prettier ./**/*.js",
-	"prettier": "npx prettier --write --no-semi --tab-width 4 --single-quote ./**/*.js",
-        "pretest": "npm run xo && npm run prettier",
+        "xo": "xo --fix",
+        "pretest": "npm run xo",
         "test": "tap ./**/*.js"
+    },
+    "xo": {
+        "space": 4,
+        "semicolon": false,
+        "prettier": true
     },
     "author": "Paul Zimmer",
     "license": "MIT",
     "devDependencies": {
         "tap": "^11.1.5",
-        "xo": "^0.21.0"
+        "xo": "^0.21.1"
     }
 }
