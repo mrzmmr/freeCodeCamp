@@ -44,7 +44,7 @@ const collection = {
     }
 }
 
-function updateRecords(id, prop, value) {
+const updateRecords = (id, prop, value, collection) => {
     const copy = JSON.parse(JSON.stringify(collection))
 
     if (value.length > 0) {
@@ -69,14 +69,14 @@ function updateRecords(id, prop, value) {
 const tests = [
     {
         name: 'artist should be "ABBA"',
-        params: [5439, 'artist', 'ABBA'],
+        params: [5439, 'artist', 'ABBA', collection],
         test: (t, actual) => {
             t.ok(actual[5439].artist === 'ABBA')
         }
     },
     {
         name: 'tracks should have "Take a Chance on Me" as the last element',
-        params: [5439, 'tracks', 'Take a Chance on Me'],
+        params: [5439, 'tracks', 'Take a Chance on Me', collection],
         test: (t, actual) => {
             const { tracks } = actual[5439]
             t.ok(tracks.indexOf('Take a Chance on Me') === tracks.length - 1)
@@ -84,14 +84,14 @@ const tests = [
     },
     {
         name: 'artist should not be set',
-        params: [2548, 'artist', ''],
+        params: [2548, 'artist', '', collection],
         test: (t, actual) => {
             t.ok(Object.keys(actual).indexOf('artist') < 0)
         }
     },
     {
         name: 'tracks should have "Addicted to Love" as the last element',
-        params: [1245, 'tracks', 'Addicted to Love'],
+        params: [1245, 'tracks', 'Addicted to Love', collection],
         test: (t, actual) => {
             const { tracks } = actual[1245]
             t.ok(tracks.indexOf('Addicted to Love') === tracks.length - 1)
@@ -99,7 +99,7 @@ const tests = [
     },
     {
         name: 'tracks should have "1999" as the first element',
-        params: [2468, 'tracks', 'Free'],
+        params: [2468, 'tracks', 'Free', collection],
         test: (t, actual) => {
             const { tracks } = actual[2468]
             t.ok(tracks.indexOf('1999') === 0)
@@ -107,7 +107,7 @@ const tests = [
     },
     {
         name: 'tracks should not be set',
-        params: [2548, 'tracks', ''],
+        params: [2548, 'tracks', '', collection],
         test: (t, actual) => {
             t.ok(Object.keys(actual).indexOf('tracks') < 0)
         }
